@@ -1,14 +1,15 @@
 import {
+  Body,
   Controller,
   Get,
   HttpException,
   HttpStatus,
   Param,
   ParseIntPipe,
-  Req,
-  Version,
+  Post,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
+import { CreateCustomerDto } from './dtos/CreateCustomer.dto';
 
 @Controller('customers')
 export class CustomersController {
@@ -24,5 +25,10 @@ export class CustomersController {
     const customer = this.customersService.findCustomerById(id);
     if (customer) return customer;
     else throw new HttpException('Customer not found', HttpStatus.NOT_FOUND);
+  }
+
+  @Post('')
+  createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
+    this.customersService.createCustomer(createCustomerDto);
   }
 }
