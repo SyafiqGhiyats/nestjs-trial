@@ -7,6 +7,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  ValidationPipe,
 } from '@nestjs/common';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dtos/CreateCustomer.dto';
@@ -28,7 +29,11 @@ export class CustomersController {
   }
 
   @Post('')
-  createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
+  //* There are 2 way to validate body
+  // @UsePipes(ValidationPipe)
+  createCustomer(
+    @Body(new ValidationPipe()) createCustomerDto: CreateCustomerDto
+  ) {
     this.customersService.createCustomer(createCustomerDto);
   }
 }
