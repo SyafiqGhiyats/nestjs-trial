@@ -9,11 +9,21 @@ export class CustomersService {
       id: 1,
       name: 'Syafiq GM',
       email: 'syafiqgm@gmail.com',
+      address: {
+        zip: null,
+        city: 'Cimahi',
+        state: 'ID',
+      },
     },
     {
       id: 2,
       name: 'John Doe',
       email: 'johndoe@gmail.com',
+      address: {
+        zip: 40531,
+        city: 'Cimahi',
+        state: 'ID',
+      },
     },
   ];
 

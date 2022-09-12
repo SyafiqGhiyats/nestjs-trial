@@ -9,7 +9,7 @@ import {
   Post,
   ValidationPipe,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dtos/CreateCustomer.dto';
 
@@ -17,7 +17,10 @@ import { CreateCustomerDto } from './dtos/CreateCustomer.dto';
 @Controller('customers')
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
-
+  @ApiOkResponse({
+    description: 'Successfully get all customers',
+    type: CreateCustomerDto,
+  })
   @Get('')
   getCustomers() {
     return this.customersService.findCustomers();
@@ -30,6 +33,9 @@ export class CustomersController {
     else throw new HttpException('Customer not found', HttpStatus.NOT_FOUND);
   }
 
+  @ApiCreatedResponse({
+    description: 'The record has been successfully created.',
+  })
   @Post('')
   //* There are 2 way to validate body
   // @UsePipes(ValidationPipe)
