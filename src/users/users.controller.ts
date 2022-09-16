@@ -14,7 +14,7 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { AuthenticatedGuard } from 'src/auth/utils/LocalGuard';
+import { AuthenticatedGuard } from '@/auth/utils/LocalGuard';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { SerializedUser } from './types';
 import { UsersService } from './users.service';

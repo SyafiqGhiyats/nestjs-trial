@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from 'src/typeorm';
-import { UsersService } from 'src/users/users.service';
+import { UserEntity } from '@/typeorm';
+import { UsersService } from '@/users/users.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { AuthenticatedGuard, LocalAuthGuard } from './utils/LocalGuard';
