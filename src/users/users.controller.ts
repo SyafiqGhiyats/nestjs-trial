@@ -8,11 +8,13 @@ import {
   Inject,
   Param,
   Post,
+  UseGuards,
   UseInterceptors,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthenticatedGuard } from 'src/auth/utils/LocalGuard';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { SerializedUser } from './types';
 import { UsersService } from './users.service';
@@ -24,6 +26,7 @@ export class UsersController {
     @Inject('USER_SERVICE') private readonly userService: UsersService
   ) {}
 
+  @UseGuards(AuthenticatedGuard)
   @Get('')
   getUsers() {
     return this.userService.getUsers();

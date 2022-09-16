@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import entities from './typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -21,6 +22,9 @@ import { ConfigModule } from '@nestjs/config';
       synchronize: true,
     }),
     AuthModule,
+    PassportModule.register({
+      session: true,
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
