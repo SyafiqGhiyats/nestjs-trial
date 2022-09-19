@@ -1,11 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { TypeormStore } from 'connect-typeorm/out';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import { AppModule } from './app.module';
+import { SessionEntity } from './typeorm';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const sessionRepository = app
+    .get(AppModule)
+    .getDataSource()
+    .getRepository(SessionEntity);
+
   app.setGlobalPrefix('api');
   const config = new DocumentBuilder()
     .setTitle('API example')
@@ -23,6 +30,7 @@ async function bootstrap() {
       cookie: {
         maxAge: 60000,
       },
+      store: new TypeormStore().connect(sessionRepository),
     })
   );
 

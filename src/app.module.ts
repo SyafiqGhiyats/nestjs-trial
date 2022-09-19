@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import entities from './typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
+import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -31,4 +32,10 @@ import { PassportModule } from '@nestjs/passport';
     }),
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly dataSource: DataSource) {}
+
+  getDataSource() {
+    return this.dataSource;
+  }
+}

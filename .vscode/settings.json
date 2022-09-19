@@ -20,5 +20,6 @@
     "files.trimTrailingWhitespace": true,
     "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
     "typescript.format.semicolons": "insert",
-    "typescript.preferences.quoteStyle": "double"
+    "typescript.preferences.quoteStyle": "double",
+    "docwriter.style": "JSDoc"
   }
