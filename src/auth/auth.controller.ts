@@ -1,20 +1,26 @@
-import { Controller, Get, Post, Req, Session, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { Request } from 'express';
 import { AuthenticatedGuard, LocalAuthGuard } from './utils/LocalGuard';
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
+  @ApiBody({
+    description: 'Payload',
+    examples: {
+      login: {
+        value: {
+          username: 'username',
+          password: 'password',
+        },
+      },
+    },
+  })
   @UseGuards(LocalAuthGuard)
   @Post('login')
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   login() {}
-
-  @Get()
-  async getAuthSession(@Session() session: Record<string, any>) {
-    console.log(session.id);
-    session.authenticated = true;
-    return session;
-  }
 
   @UseGuards(AuthenticatedGuard)
   @Get('status')
