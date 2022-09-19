@@ -4,9 +4,10 @@ import { UserEntity } from '@/typeorm';
 import { UsersService } from '@/users/users.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { AuthenticatedGuard, LocalAuthGuard } from './utils/LocalGuard';
+import { LocalAuthGuard } from './utils/LocalGuard';
 import { LocalStrategy } from './utils/LocalStrategy';
 import { SessionSerializser } from './utils/SessionSerializer';
+import { AuthenticatedGuard } from './utils/AuthenticatedGuard';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
